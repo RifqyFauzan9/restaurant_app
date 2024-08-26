@@ -21,13 +21,13 @@ class HomePage extends StatelessWidget {
               flex: 1,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.network(
+                child: Hero(tag: restaurant.id, child: Image.network(
                   restaurant.pictureId,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return const Icon(Icons.error, size: 50); // Error icon
                   },
-                ),
+                ),),
               ),
             ),
             const SizedBox(
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Text(
                     '⭐${restaurant.rating.toString()}',
-                    style: TextStyle(fontSize: 18.0),
+                    style: const TextStyle(fontSize: 18.0),
                   ),
                 ],
               ),
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
             // loading widget
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else {
             if (snapshot.hasData) {
               final restaurantApp =
@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
               );
             } else {
               // loading widget
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           }
         },

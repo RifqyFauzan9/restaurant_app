@@ -17,19 +17,20 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: Theme.of(context).colorScheme.copyWith(
-          primary: primaryColor,
-          secondary: secondaryColor,
-          onPrimary: Colors.white
+            primary: primaryColor,
+            secondary: secondaryColor,
+            onPrimary: Colors.white),
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
         ),
-        appBarTheme: const AppBarTheme(elevation: 0,),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: secondaryColor,
+            backgroundColor: primaryColor,
             foregroundColor: Colors.white,
             textStyle: const TextStyle(),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(0),
+                Radius.circular(8),
               ),
             ),
           ),
@@ -39,9 +40,9 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (context) => const HomePage(),
         RestaurantDetailScreen.routeName: (context) => RestaurantDetailScreen(
-          restaurant:
-          ModalRoute.of(context)?.settings.arguments as Restaurant,
-        )
+              restaurant:
+                  ModalRoute.of(context)?.settings.arguments as Restaurant,
+            )
       },
     );
   }

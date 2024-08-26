@@ -51,7 +51,7 @@ class MenuCard extends StatelessWidget {
                         children: [
                           Text(
                             name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -61,7 +61,7 @@ class MenuCard extends StatelessWidget {
                           ),
                           Text(
                             price,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12.0,
                               color: Colors.grey,
                             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/model/restaurant.dart';
+import 'package:restaurant_app/widgets/favorite_button.dart';
 import 'package:restaurant_app/widgets/menu_card.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
@@ -16,8 +17,40 @@ class RestaurantDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              restaurant.pictureId,
+            Stack(
+              children: [
+                Hero(
+                  tag: restaurant.id,
+                  child: Image.network(
+                    restaurant.pictureId,
+                  ),
+                ),
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 78, 78, 78),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: IconButton(
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        const FavoriteButton(),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -32,13 +65,28 @@ class RestaurantDetailScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    '📍 ${restaurant.city}',
-                    style:
-                        const TextStyle(fontFamily: 'Poppins', fontSize: 18.0),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '📍 ${restaurant.city}',
+                        style: const TextStyle(
+                            fontFamily: 'Poppins', fontSize: 18.0),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        '⭐ ${restaurant.rating}',
+                        style: const TextStyle(
+                            fontFamily: 'Poppins', fontSize: 18.0),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 13),
-                  Text(
+                  const Text(
                     'Description',
                     style: TextStyle(
                       fontFamily: 'Poppins',
@@ -50,6 +98,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        textAlign: TextAlign.justify,
                         restaurant.description,
                         style: const TextStyle(
                           fontFamily: 'Roboto',
@@ -60,7 +109,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text(
+                  const Text(
                     'Foods',
                     style: TextStyle(
                       fontFamily: 'Poppins',
@@ -85,7 +134,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16.0),
-                  Text(
+                  const Text(
                     'Beverage',
                     style: TextStyle(
                       fontFamily: 'Poppins',
